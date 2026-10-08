@@ -8,7 +8,37 @@
   font: 12px/1.4 system-ui, sans-serif;
 }
 
-.trigger,
+/* 导出入口：无边框图标按钮。形状照项目里的 chrome 图标按钮 .panelClose
+   （26px 命中区 / 6px 圆角 / 透明底 / 无边框）。 */
+.trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--dsw-alias-label-tertiary);
+  cursor: pointer;
+}
+
+/* 悬浮沿用区块内表格行 / .tab / .accHead 那条配方（--dsl-g-hover）：主题文字色
+   4% 淡洗 + 文字色升到 label-primary。不用 rgba(255,255,255,…) 与没带兜底的
+   --dsw-alias-fill-hover —— 浅色主题下两者都看不见。 */
+.trigger:hover,
+.trigger:focus-visible {
+  background: color-mix(in srgb, var(--dsw-alias-label-primary) 4%, transparent);
+  color: var(--dsw-alias-label-primary);
+}
+
+/* 聚焦轮廓同 .panelClose。 */
+.trigger:focus-visible {
+  outline: 1px solid var(--dsw-alias-state-business-primary, #4f8ef7);
+  outline-offset: 1px;
+}
+
 .item {
   border: 1px solid var(--dsw-alias-border-l1);
   border-radius: 7px;
@@ -18,7 +48,6 @@
   cursor: pointer;
 }
 
-.trigger:hover,
 .item:hover {
   background: var(--dsw-alias-fill-hover);
   color: var(--dsw-alias-label-primary);
